@@ -1,6 +1,6 @@
 # Purpose of This Repo
 
-This repo is meant to be used to keep things organized during content development and act as the source of truth for all exercises related to this course.
+This repo contains starter code and docs for the course exercises.
 
 ## Folder Structure
 
@@ -8,25 +8,23 @@ This repo is meant to be used to keep things organized during content developmen
 
 This repo contains a folder for each `lesson` folder.
 
-Example
+Lessons:
 ```
-lesson-1-hello
-lesson-2-world
-lesson-3-foo
-lesson-4-bar
+lesson-1-threat-modeling-with-STRIDE
+lesson-2-docker-attack-surface-analysis-and-hardening
+lesson-3-kubernetes-attack-surface-and-hardening
+lesson-4-software-composition-analysis
+lesson-5-runtime-monitoring-and-incident-response
+
 ```
 
 Each `lesson` folder is named using the naming convention of `lesson-#-name-of-lesson`.
 
 Example
 ```
-lesson-1-hello
+lesson-1-threat-modeling-with-STRIDE
 ```
-
-Four lesson folders have been provided as a template; However, you may need to add more or possibly use less than four depending on what is needed.
-
-If you require an additional lesson folder, you can make a copy of the folder and paste it into the root directory.
 
 ### Exercises Folder
 
-Each `lesson` folder contains an `exercises` folder. This `exercises` folder should contain all files and instructions necessary for the exercises along with the solution. The solutions for these exercises will be shared with students. See the `README` in the `exercises` folder for information about folder structure.
+Each `lesson` folder contains an `exercises` folder. This `exercises` folder contains a start and solution folder. The starter folder contains relevant starter code and files. The solution folder contains relevant solution artifacts.
