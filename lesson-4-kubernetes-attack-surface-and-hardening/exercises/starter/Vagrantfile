@@ -1,41 +1,37 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-## replace with your hardened image (e.g. nickreva/udacitysecurity:hardened-v1.0)
-default_box = "generic/opensuse42"
+# set up the default terminal
+ENV["TERM"]="linux"
 
-# All Vagrant configuration is done below. The "2" in Vagrant.configure
-# configures the configuration version (we support older styles for
-# backwards compatibility). Please don't change it unless you know what
-# you're doing.
 Vagrant.configure("2") do |config|
-  # The most common configuration options are documented and commented below.
-  # For a complete reference, please see the online documentation at
-  # https://docs.vagrantup.com.
 
-  # Every Vagrant development environment requires a box. You can search for
-  # boxes at https://vagrantcloud.com/search.
+  # set up root access
+  config.ssh.username = 'root'
+  config.ssh.password = 'vagrant'
+  config.ssh.insert_key = 'true'
 
-  config.vm.define "master" do |master|
-    master.vm.box = default_box
-    master.vm.hostname = "master2"
-    master.vm.network 'private_network', ip: "192.168.0.200",  virtualbox__intnet: true
-    master.vm.network "forwarded_port", guest: 22, host: 2222, id: "ssh", disabled: true
-    master.vm.network "forwarded_port", guest: 22, host: 2000 # Master Node SSH
-    master.vm.network "forwarded_port", guest: 6444, host: 6444 # API Access
-    for p in 30000..30100 # expose NodePort IP's
-      master.vm.network "forwarded_port", guest: p, host: p, protocol: "tcp"
+  NodeCount = 2
+
+  # configure Kubernetes Nodes
+  (1..NodeCount).each do |i|
+    config.vm.define "node#{i}" do |node|
+      # set base image for the vagrant box
+      config.vm.box = "opensuse/Leap-15.2.x86_64"
+
+      # set the static IP for the vagrant box
+      node.vm.network "private_network", ip: "192.168.50.10#{i}"
+      # configure the parameters for VirtualBox provider
+      node.vm.provider "virtualbox" do |v|
+        v.name = "node#{i}"
+        v.memory = 2048
+        v.cpus = 2
       end
-    master.vm.provider "virtualbox" do |v|
-      v.memory = "3072"
-      v.name = "master2"
-      end
-    master.vm.provision "shell", inline: <<-SHELL
-      sudo zypper refresh
-      sudo zypper --non-interactive install bzip2
-      sudo zypper --non-interactive install go
-      sudo zypper --non-interactive install git	
-      sudo zypper --non-interactive install etcd
-      curl -sfL https://get.k3s.io | sh -
+
+    config.vm.provision "shell", inline: <<-SHELL
+      # install Docker
+      zypper --non-interactive install docker #python3-docker-compose
+      systemctl enable docker
+      usermod -G docker -a $USER
+      systemctl restart docker
     SHELL
+    end
   end
 end
