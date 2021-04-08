@@ -2,7 +2,7 @@
 ENV["TERM"]="linux"
 
 Vagrant.configure("2") do |config|
-
+#test for Yi!
   # set up root access
   config.ssh.username = 'root'
   config.ssh.password = 'vagrant'
