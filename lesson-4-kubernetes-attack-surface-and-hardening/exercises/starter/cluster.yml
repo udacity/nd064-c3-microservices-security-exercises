@@ -44,9 +44,9 @@ services:
     cert: ""
     key: ""
     path: ""
-    uid: 0
-    gid: 0
-    snapshot: null
+    uid: 52034
+    gid: 52034
+    snapshot: true
     retention: ""
     creation: ""
     backup_config: null
@@ -60,15 +60,22 @@ services:
     win_extra_env: []
     service_cluster_ip_range: 10.43.0.0/16
     service_node_port_range: ""
-    pod_security_policy: false
+    pod_security_policy: true
     always_pull_images: false
-    secrets_encryption_config: null
-    audit_log: null
+    secrets_encryption_config:
+      enabled: true
+      custom_config: null
+    audit_log:
+      enabled: true
+      configuration: null
     admission_configuration: null
-    event_rate_limit: null
+    event_rate_limit:
+      enabled: true
+      configuration: null
   kube-controller:
     image: ""
-    extra_args: {}
+    extra_args:
+      feature-gates: RotateKubeletServerCertificate=true
     extra_binds: []
     extra_env: []
     win_extra_args: {}
@@ -86,7 +93,10 @@ services:
     win_extra_env: []
   kubelet:
     image: ""
-    extra_args: {}
+    extra_args:
+      feature-gates: RotateKubeletServerCertificate=true
+      protect-kernel-defaults: "true"
+      tls-cipher-suites: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256
     extra_binds: []
     extra_env: []
     win_extra_args: {}
@@ -96,7 +106,7 @@ services:
     infra_container_image: ""
     cluster_dns_server: 10.43.0.10
     fail_swap_on: false
-    generate_serving_certificate: false
+    generate_serving_certificate: true
   kubeproxy:
     image: ""
     extra_args: {}
@@ -116,7 +126,52 @@ authentication:
   strategy: x509
   sans: []
   webhook: null
-addons: ""
+addons: |
+  apiVersion: policy/v1beta1
+  kind: PodSecurityPolicy
+  metadata:
+    name: restricted
+  spec:
+    requiredDropCapabilities:
+    - NET_RAW
+    privileged: false
+    allowPrivilegeEscalation: false
+    defaultAllowPrivilegeEscalation: false
+    fsGroup:
+      rule: RunAsAny
+    runAsUser:
+      rule: MustRunAsNonRoot
+    seLinux:
+      rule: RunAsAny
+    supplementalGroups:
+      rule: RunAsAny
+    volumes:
+    - emptyDir
+    - secret
+    - persistentVolumeClaim
+    - downwardAPI
+    - configMap
+    - projected
+  ---
+  apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    name: default-allow-all
+  spec:
+    podSelector: {}
+    ingress:
+    - {}
+    egress:
+    - {}
+    policyTypes:
+    - Ingress
+    - Egress
+  ---
+  apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: default
+  automountServiceAccountToken: false
 addons_include: []
 system_images:
   etcd: rancher/coreos-etcd:v3.4.14-rancher1
