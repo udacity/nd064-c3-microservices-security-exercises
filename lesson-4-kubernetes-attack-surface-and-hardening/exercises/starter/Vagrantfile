@@ -2,12 +2,11 @@
 ENV["TERM"]="linux"
 
 Vagrant.configure("2") do |config|
-#test for Yi!
   # set up root access
   config.ssh.username = 'root'
   config.ssh.password = 'vagrant'
   config.ssh.insert_key = 'true'
-
+  
   NodeCount = 2
 
   # configure Kubernetes Nodes
@@ -21,7 +20,7 @@ Vagrant.configure("2") do |config|
       # configure the parameters for VirtualBox provider
       node.vm.provider "virtualbox" do |v|
         v.name = "node#{i}"
-        v.memory = 2048
+        v.memory = 4096
         v.cpus = 2
       end
 
