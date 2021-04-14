@@ -1,0 +1,24 @@
+version: '3.3'
+
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    ports:
+      - 5432:5432
+
+  redis:
+    image: redis:alpine
+
+  sqli:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - 8080:8080
+    command: |
+      wait-for postgres:5432 -- python run.py
