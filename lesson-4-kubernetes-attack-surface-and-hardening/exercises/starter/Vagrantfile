@@ -2,11 +2,12 @@
 ENV["TERM"]="linux"
 
 Vagrant.configure("2") do |config|
+
   # set up root access
   config.ssh.username = 'root'
   config.ssh.password = 'vagrant'
   config.ssh.insert_key = 'true'
-  
+
   NodeCount = 2
 
   # configure Kubernetes Nodes
@@ -23,14 +24,8 @@ Vagrant.configure("2") do |config|
         v.memory = 4096
         v.cpus = 2
       end
-
-    config.vm.provision "shell", inline: <<-SHELL
-      # install Docker
-      zypper --non-interactive install docker #python3-docker-compose
-      systemctl enable docker
-      usermod -G docker -a $USER
-      systemctl restart docker
-    SHELL
+    # Bootstrap the machine
+    config.vm.provision "shell", path: "bootstrap.sh"
     end
   end
 end
