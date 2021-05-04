@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  namespace: default
+  name: prometheus
+spec:
+  replicas: 1
+  serviceAccountName: prometheus-kube-prometheus-operator-token-jqqzw
+  securityContext:
+    fsGroup: 2000
+    runAsNonRoot: true
+    runAsUser: 1000
+  additionalScrapeConfigs:
+    key: "prometheus-additional.yaml"
+    name: "prom-additional-scrape-configs"

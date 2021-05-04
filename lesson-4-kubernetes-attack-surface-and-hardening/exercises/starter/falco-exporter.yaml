@@ -1,0 +1,3 @@
+grafanaDashboard:
+  enabled: true
+  namespace: default
