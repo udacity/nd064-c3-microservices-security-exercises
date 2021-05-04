@@ -17,20 +17,20 @@ nodes:
   ssh_cert_path: ""
   labels: {}
   taints: []
-#- address: 192.168.50.102
-#  port: "22"
-#  internal_address: 192.168.50.102
-#  role:
-#  - worker
-#  hostname_override: node2
-#  user: root
-#  docker_socket: /var/run/docker.sock
-#  ssh_key: ""
-#  ssh_key_path: ~/.ssh/id_rsa
-#  ssh_cert: ""
-#  ssh_cert_path: ""
-#  labels: {}
-#  taints: []
+- address: 192.168.50.102
+  port: "22"
+  internal_address: 192.168.50.102
+  role:
+  - worker
+  hostname_override: node2
+  user: root
+  docker_socket: /var/run/docker.sock
+  ssh_key: ""
+  ssh_key_path: ~/.ssh/id_rsa
+  ssh_cert: ""
+  ssh_cert_path: ""
+  labels: {}
+  taints: []
 services:
   etcd:
     image: ""
