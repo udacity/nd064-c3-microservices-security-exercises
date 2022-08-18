@@ -27,4 +27,4 @@ lesson-1-threat-modeling-with-STRIDE
 
 ### Exercises Folder
 
-Each `lesson` folder contains an `exercises` folder. This `exercises` folder contains a start and solution folder. The starter folder contains relevant starter code and files. The solution folder contains relevant solution artifacts.
+Each `lesson` folder contains an `exercises` folder. This `exercises` folder contains a starter and solution folder. The starter folder contains relevant starter code and files. The solution folder contains relevant solution artifacts.
