@@ -9,7 +9,7 @@ nodes:
   - etcd
   - worker
   hostname_override: node1
-  user: rke
+  user: root
   docker_socket: /var/run/docker.sock
   ssh_key: ""
   ssh_key_path: ~/.ssh/id_rsa
