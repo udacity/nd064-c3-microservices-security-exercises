@@ -17,13 +17,18 @@ Vagrant.configure("2") do |config|
       # Use any version shown here https://app.vagrantup.com/opensuse/boxes/Leap-15.4.x86_64
       config.vm.box = "opensuse/Leap-15.4.x86_64"
       config.vm.box_version = "15.4.13.7"
+      
+      # NOTE: This will enable public access to the opened port
+      config.vm.network "forwarded_port", guest: 9090, host: 9090
+      config.vm.network "forwarded_port", guest: 9376, host: 9376
+      config.vm.network "forwarded_port", guest: 3000, host: 3000
 
       # set the static IP for the vagrant box
       node.vm.network "private_network", ip: "192.168.50.10#{i}"
       # configure the parameters for VirtualBox provider
       node.vm.provider "virtualbox" do |v|
         v.name = "node#{i}"
-        v.memory = 2048
+        v.memory = 4096
         v.cpus = 2
       end
     # Bootstrap the machine
