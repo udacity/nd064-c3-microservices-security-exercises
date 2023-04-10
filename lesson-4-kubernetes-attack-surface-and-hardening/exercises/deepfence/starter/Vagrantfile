@@ -1,0 +1,35 @@
+# set up the default terminal
+ENV["TERM"]="linux"
+
+Vagrant.configure("2") do |config|
+
+  # set up root access
+  config.ssh.username = 'root'
+  config.ssh.password = 'vagrant'
+  config.ssh.insert_key = 'true'
+
+  NodeCount = 2
+
+  # configure Kubernetes Nodes
+  (1..NodeCount).each do |i|
+    config.vm.define "node#{i}" do |node|
+      # set base image for the vagrant box
+      # config.vm.box = "opensuse/Leap-15.2.x86_64"
+      # Use any version shown here https://app.vagrantup.com/opensuse/boxes/Leap-15.4.x86_64
+      config.vm.box = "opensuse/Leap-15.4.x86_64"
+      config.vm.box_version = "15.4.13.7"
+      config.vm.hostname = "node#{i}"
+
+      # set the static IP for the vagrant box
+      node.vm.network "private_network", ip: "192.168.50.10#{i}"
+      # configure the parameters for VirtualBox provider
+      node.vm.provider "virtualbox" do |v|
+        v.name = "node#{i}"
+        v.memory = 4096
+        v.cpus = 2
+      end
+    # Bootstrap the machine
+    config.vm.provision "shell", path: "bootstrap.sh"
+    end
+  end
+end
