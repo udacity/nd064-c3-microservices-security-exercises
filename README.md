@@ -10,11 +10,12 @@ This repo contains a folder for each `lesson` folder.
 
 Lessons:
 ```
-lesson-1-threat-modeling-with-STRIDE
-lesson-2-docker-attack-surface-analysis-and-hardening
-lesson-3-kubernetes-attack-surface-and-hardening
-lesson-4-software-composition-analysis
-lesson-5-runtime-monitoring-and-incident-response
+lesson-1-introduction-to-microservices-security/exercises/starter
+lesson-2-threat-modeling-with-STRIDE
+lesson-3-docker-attack-surface-analysis-and-hardening
+lesson-4-kubernetes-attack-surface-and-hardening
+lesson-5-software-composition-analysis
+lesson-6-runtime-monitoring-and-incident-response
 
 ```
 
