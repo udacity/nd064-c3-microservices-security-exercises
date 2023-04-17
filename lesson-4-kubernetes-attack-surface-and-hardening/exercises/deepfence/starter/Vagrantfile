@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
   config.ssh.password = 'vagrant'
   config.ssh.insert_key = 'true'
 
-  NodeCount = 2
+  NodeCount = 3
 
   # configure Kubernetes Nodes
   (1..NodeCount).each do |i|
@@ -25,8 +25,8 @@ Vagrant.configure("2") do |config|
       # configure the parameters for VirtualBox provider
       node.vm.provider "virtualbox" do |v|
         v.name = "node#{i}"
-        v.memory = 4096
-        v.cpus = 2
+        v.memory = 8192
+        v.cpus = 4
       end
     # Bootstrap the machine
     config.vm.provision "shell", path: "bootstrap.sh"
