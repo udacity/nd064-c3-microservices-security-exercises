@@ -22,18 +22,18 @@ Vagrant.configure("2") do |config|
       config.vm.network "public_network", :adapter=>3, bridge: "br1"
       
       # NOTE: This will enable public access to the opened port
-      config.vm.network "forwarded_port", guest: 8080, host: 8080
-      config.vm.network "forwarded_port", guest: 9090, host: 9090
-      config.vm.network "forwarded_port", guest: 9100, host: 9100
-      config.vm.network "forwarded_port", guest: 9376, host: 9376
-      config.vm.network "forwarded_port", guest: 3000, host: 3000
+      # config.vm.network "forwarded_port", guest: 8080, host: 8080
+      # config.vm.network "forwarded_port", guest: 9090, host: 9090
+      # config.vm.network "forwarded_port", guest: 9100, host: 9100
+      # config.vm.network "forwarded_port", guest: 9376, host: 9376
+      # config.vm.network "forwarded_port", guest: 3000, host: 3000
 
       # set the static IP for the vagrant box
       node.vm.network "private_network", ip: "192.168.50.10#{i}"
       # configure the parameters for VirtualBox provider
       node.vm.provider "virtualbox" do |v|
         v.name = "node#{i}"
-        v.memory = 8192
+        v.memory = 4096
         v.cpus = 2
       end
     # Bootstrap the machine
