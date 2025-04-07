@@ -9,7 +9,7 @@ nodes:
   - etcd
   - worker
   hostname_override: node1
-  user: root
+  user: vagrant
   docker_socket: /var/run/docker.sock
   ssh_key: ""
   ssh_key_path: ~/.ssh/id_rsa
@@ -23,7 +23,7 @@ nodes:
   role:
   - worker
   hostname_override: node2
-  user: root
+  user: vagrant
   docker_socket: /var/run/docker.sock
   ssh_key: ""
   ssh_key_path: ~/.ssh/id_rsa

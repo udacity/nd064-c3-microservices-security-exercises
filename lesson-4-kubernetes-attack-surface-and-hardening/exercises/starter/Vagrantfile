@@ -4,8 +4,9 @@ ENV["TERM"]="linux"
 Vagrant.configure("2") do |config|
 
   # set up root access
-  config.ssh.username = 'root'
-  config.ssh.password = 'vagrant'
+  # 'root' user does not exists in Leap 15.6. Instead use the 'vagrant' user and 'vagrant' password. 
+  # config.ssh.username = 'root' 
+  # config.ssh.password = 'vagrant'
   config.ssh.insert_key = 'true'
 
   NodeCount = 2
@@ -16,9 +17,10 @@ Vagrant.configure("2") do |config|
       # set base image for the vagrant box
       # config.vm.box = "opensuse/Leap-15.2.x86_64"
       # Use any version shown here https://app.vagrantup.com/opensuse/boxes/Leap-15.4.x86_64
-      config.vm.box = "opensuse/Leap-15.4.x86_64"
-      config.vm.box_version = "15.4.13.7"
+      config.vm.box = "opensuse/Leap-15.6.x86_64"
+      config.vm.box_version = "15.6.13.197"
       config.vm.hostname = "node#{i}"
+      config.vm.boot_timeout = 900
 
       # set the static IP for the vagrant box
       node.vm.network "private_network", ip: "192.168.50.10#{i}"
