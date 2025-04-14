@@ -16,8 +16,8 @@ Vagrant.configure("2") do |config|
       # set base image for the vagrant box
       # config.vm.box = "opensuse/Leap-15.2.x86_64"
       # Use any version shown here https://app.vagrantup.com/opensuse/boxes/Leap-15.4.x86_64
-      config.vm.box = "opensuse/Leap-15.4.x86_64"
-      config.vm.box_version = "15.4.13.7"
+      config.vm.box = "opensuse/Leap-15.6.x86_64"
+      config.vm.box_version = "15.6.13.356"
       config.vm.hostname = "node#{i}"
 
       # set the static IP for the vagrant box

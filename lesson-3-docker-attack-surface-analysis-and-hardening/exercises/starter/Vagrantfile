@@ -4,8 +4,8 @@ ENV["TERM"]="linux"
 Vagrant.configure("2") do |config|
   
   # Use any version shown here https://app.vagrantup.com/opensuse/boxes/Leap-15.4.x86_64
-  config.vm.box = "opensuse/Leap-15.4.x86_64"
-  config.vm.box_version = "15.4.13.7"
+  config.vm.box = "opensuse/Leap-15.6.x86_64"
+  config.vm.box_version = "15.6.13.356"
 
   # st the static IP for the vagrant box
   config.vm.network "private_network", ip: "192.168.50.4"

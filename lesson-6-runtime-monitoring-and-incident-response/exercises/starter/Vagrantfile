@@ -15,8 +15,8 @@ Vagrant.configure("2") do |config|
     config.vm.define "node#{i}" do |node|
       # set base image for the vagrant box
       # Use any version shown here https://app.vagrantup.com/opensuse/boxes/Leap-15.4.x86_64
-      config.vm.box = "opensuse/Leap-15.4.x86_64"
-      config.vm.box_version = "15.4.13.7"
+      config.vm.box = "opensuse/Leap-15.6.x86_64"
+      config.vm.box_version = "15.6.13.356"
       
       # Run ifconfig or ip a to find the appropriate interface
       config.vm.network "public_network", :adapter=>3, bridge: "br1"
