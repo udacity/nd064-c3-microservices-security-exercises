@@ -1,0 +1,10 @@
+node-name: node1
+node-ip: 192.168.50.101
+advertise-address: 192.168.50.101
+tls-san:
+  - 192.168.50.101
+cni: calico
+cluster-cidr: 10.42.0.0/16
+service-cidr: 10.43.0.0/16
+cluster-domain: cluster.local
+disable-swap: true
