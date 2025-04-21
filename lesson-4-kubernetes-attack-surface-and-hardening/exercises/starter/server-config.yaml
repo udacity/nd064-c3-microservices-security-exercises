@@ -8,3 +8,5 @@ cluster-cidr: 10.42.0.0/16
 service-cidr: 10.43.0.0/16
 cluster-domain: cluster.local
 disable-swap: true
+# k3s-server-args:
+#   - "--node-label=node-role.kubernetes.io/worker=true"
