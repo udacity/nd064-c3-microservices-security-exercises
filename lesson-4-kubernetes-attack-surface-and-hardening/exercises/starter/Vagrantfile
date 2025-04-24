@@ -18,7 +18,9 @@ Vagrant.configure("2") do |config|
       # Use any version shown here https://app.vagrantup.com/opensuse/boxes/Leap-15.4.x86_64
       config.vm.box = "opensuse/Leap-15.6.x86_64"
       config.vm.box_version = "15.6.13.356"
-      config.vm.hostname = "node#{i}"
+      
+      # Set a unique hostname for each node
+      node.vm.hostname = "node#{i}"
 
       # set the static IP for the vagrant box
       node.vm.network "private_network", ip: "192.168.50.10#{i}"
