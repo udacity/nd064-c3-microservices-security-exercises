@@ -26,3 +26,9 @@ systemctl disable apparmor
 # cp /root/.ssh/authorized_keys /home/rke/.ssh
 # chown rke /home/rke -R
 
+echo "[TASK 6] Install kubectl"
+# Download and install kubectl
+curl -LO "https://dl.k8s.io/release/v1.32.2/bin/linux/amd64/kubectl"
+sudo mv kubectl /usr/local/bin/
+sudo chmod +x /usr/local/bin/kubectl
+echo "kubectl installed successfully."
