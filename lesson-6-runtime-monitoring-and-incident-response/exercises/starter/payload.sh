@@ -1,9 +1,9 @@
 #!/bin/bash
 #start monero_cpu_moneropool:latest
-kubectl run --kubeconfig kube_config_cluster.yml moneropool --image=servethehome/monero_cpu_moneropool:latest --replicas=1
+kubectl run moneropool --image=servethehome/monero_cpu_moneropool:latest
 #start xmrpooldotnet
-kubectl run --kubeconfig kube_config_cluster.yml xmrpooldotnet --image=servethehome/monero_cpu_xmrpooldotnet:latest --replicas=1
+kubectl run xmrpooldotnet --image=servethehome/monero_cpu_xmrpooldotnet:latest
 #start minergate
-kubectl run --kubeconfig kube_config_cluster.yml minergate --image=servethehome/monero_cpu_minergate:latest --replicas=1
+kubectl run minergate --image=servethehome/monero_cpu_minergate:latest
 
 echo "Can you identify the payload(s)?"
