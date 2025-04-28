@@ -7,13 +7,12 @@ systemctl enable docker
 usermod -G docker -a $USER
 systemctl restart docker
 
-echo "[TASK 2] Disable firewalld"
-systemctl stop firewalld
-systemctl disable firewalld
+# echo "[TASK 2] Disable firewalld"
+# systemctl stop firewalld
+# systemctl disable firewalld
 
-echo "[TASK 3] Disable apparmor"
-systemctl stop apparmor
-systemctl disable apparmor
+echo "[TASK 3] Install apparmor"
+zypper --non-interactive install apparmor-parser
 
 # echo "[TASK 4] Set up rke user"
 # useradd rke
