@@ -1,8 +1,0 @@
-token: YOUR_SHARED_TOKEN
-server: https://192.168.50.101:9345
-node-name: node2
-node-ip: 192.168.50.102
-cni: calico
-disable-swap: true
-# k3s-agent-args:
-#   - "--node-label=node-role.kubernetes.io/worker=true"
