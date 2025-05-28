@@ -1,0 +1,4 @@
+token: SERVER_NODE_TOKEN
+server: https://192.168.50.101:9345
+node-name: node2
+node-ip: 192.168.50.102

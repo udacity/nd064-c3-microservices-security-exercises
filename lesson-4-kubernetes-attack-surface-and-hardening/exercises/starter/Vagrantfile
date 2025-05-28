@@ -30,7 +30,7 @@ Vagrant.configure("2") do |config|
         v.cpus = 3
       end
     # Bootstrap the machine
-    config.vm.provision "shell", path: "bootstrap.sh"
+    # config.vm.provision "shell", path: "bootstrap.sh"
     end
   end
 end
