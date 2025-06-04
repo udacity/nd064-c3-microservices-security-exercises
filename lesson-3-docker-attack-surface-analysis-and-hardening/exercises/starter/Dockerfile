@@ -1,7 +1,4 @@
-# syntax=docker/dockerfile:1.0-experimental
-
-#define base image; replace with your image location once hardened
-FROM opensuse/leap:latest
+FROM opensuse/leap:15.6
 
 #define maintainer 
 LABEL maintainer="nick.reva@snap.com"
@@ -9,9 +6,9 @@ LABEL maintainer="nick.reva@snap.com"
 #define version
 LABEL version="V1"
 
-# create a directory to work in
-RUN mkdir udacity \
-    && cd udacity
+# set working directory
+RUN mkdir -p /udacity
+WORKDIR /udacity
 
 #install zypper 
 RUN zypper refs && zypper refresh

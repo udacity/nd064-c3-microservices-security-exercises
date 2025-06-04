@@ -15,11 +15,12 @@ Vagrant.configure("2") do |config|
     config.vm.define "node#{i}" do |node|
       # set base image for the vagrant box
       # Use any version shown here https://app.vagrantup.com/opensuse/boxes/Leap-15.4.x86_64
-      config.vm.box = "opensuse/Leap-15.4.x86_64"
-      config.vm.box_version = "15.4.13.7"
+      config.vm.box = "opensuse/Leap-15.6.x86_64"
+      config.vm.box_version = "15.6.13.356"
+      config.vm.boot_timeout = 900
       
       # Run ifconfig or ip a to find the appropriate interface
-      config.vm.network "public_network", :adapter=>3, bridge: "br1"
+      config.vm.network "public_network", :adapter=>3, bridge: "eth0"
       
       # NOTE: This will enable public access to the opened port
       # config.vm.network "forwarded_port", guest: 8080, host: 8080
@@ -33,11 +34,9 @@ Vagrant.configure("2") do |config|
       # configure the parameters for VirtualBox provider
       node.vm.provider "virtualbox" do |v|
         v.name = "node#{i}"
-        v.memory = 4096
-        v.cpus = 2
+        v.memory = 8192
+        v.cpus = 4
       end
-    # Bootstrap the machine
-    config.vm.provision "shell", path: "bootstrap.sh"
     end
   end
 end
